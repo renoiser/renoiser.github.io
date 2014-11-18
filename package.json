@@ -1,0 +1,25 @@
+{
+  "name": "renatolongobardi.github.io",
+  "version": "1.0.0",
+  "description": "renato longobardi | github site",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/renatolongobardi/renatolongobardi.github.io.git"
+  },
+  "keywords": [
+    "RL"
+  ],
+  "author": "Renato Longobardi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/renatolongobardi/renatolongobardi.github.io/issues"
+  },
+  "homepage": "https://github.com/renatolongobardi/renatolongobardi.github.io",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}
