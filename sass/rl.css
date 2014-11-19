@@ -2166,7 +2166,10 @@ body {
   background: #000;
   color: #fff;
   font-family: 'titillium web', sans-serif;
-  font-weight: 200; }
+  font-weight: 200; 
+overflow: hidden;
+   
+}
 
 .hero {
   position: relative;
