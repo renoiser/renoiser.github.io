@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Load the Paper.js library -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> 
+<script type="text/javascript" src="js/paper.js"></script>
+<script type="text/javascript" src="js/asset.js"></script>
+<script type="text/javascript" src="js/tween.js"></script>
+
+<!-- Define inlined PaperScript associate it with myCanvas -->
+
+<style>
+
+	* { padding: 0;margin: 0 }
+
+	body {
+		background: #fff;
+	}
+	
+
+</style>
+
+<script type="text/paperscript" canvas="myCanvas">
+
+	
+		
+			var points = [];
+			
+			var randomPoint;
+			
+			var index = 0;
+			
+			
+			
+			/* LINES
+			__________________________________ */
+			
+			var line = new Path({
+				strokeColor : 'red',
+				selected : false
+				
+			});
+			
+			
+			/* TRAVELLER
+			__________________________________ */
+			
+			var traveller = new Path.Circle({
+				
+				fillColor : 'black',
+				radius : 5,
+				center : [800,100],
+				
+			})
+			
+			
+			
+			
+			
+			/* TEXT
+			__________________________________ */
+			
+			
+//			var text = new PointText({
+//				point: view.center,
+//				content: 'SIXTHMINOR',
+//				justification: 'center',
+//				fontSize: 100,
+//				fillColor : 'white'
+//			});
+			
+			
+			
+			
+			
+			
+			/* INIT
+			_______________________________ */
+			
+			
+			
+			for (var i = 0; i < 140; i++) {
+				
+				var point = new Path.Circle({
+					
+					center : Point.random() * view.size,
+					radius : 2,
+					fillColor : '#777',
+				
+				})
+				
+				points.push(point.position);
+				
+				//line.add(point.position);
+								
+			}
+			
+			
+			var destination = new Point( points[index].x, points[index].y );
+			
+			
+			function onFrame(){
+			
+				var vector = destination - traveller.position;
+				
+				traveller.position += vector / 10;
+				
+				line.add(traveller.position)
+				
+				
+								
+				if (vector.length < 2) {
+				
+				
+					destination = new Point( points[index].x, points[index].y );
+					
+//					line.strokeWidth = Size.random();
+					
+					
+					index++;
+					
+				}
+						
+			
+			
+			
+			}
+			
+			
+			
+		
+		
+	
+		
+		
+		
+
+	
+</script>
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Load the Paper.js library -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> 
+<script type="text/javascript" src="js/dat.gui.js"></script>
+<script type="text/javascript" src="js/paper.js"></script>
+<script type="text/javascript" src="js/asset.js"></script>
+<script type="text/javascript" src="js/tween.js"></script>
+
+<!-- Define inlined PaperScript associate it with myCanvas -->
+
+<style>
+
+	* { padding: 0;margin: 0 }
+
+	body {
+
+	}
+	
+
+</style>
+
+<script type="text/paperscript" canvas="myCanvas">
+	
+	
+	var particles = new Group();
+	var tracciato = new Path();
+	
+	var pointer = view.center;
+	
+	var circle_pos = view.center;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	var circle = new Path.Circle({
+		center: view.center,
+		radius: 90,
+		strokeColor: 'black',
+		selected : true,
+		
+	});	
+	
+	
+	circle.flatten(20);
+	
+	
+	
+	
+	
+	
+	
+	
+    
+   
+        
+    
+    
+    	
+    	var particle = new Path.Circle({
+    		center: [ RANDOM(0,view.size.width), RANDOM(0,view.size.height) ],
+    		radius: 14
+    	});    
+    	
+    	particle.strokeColor = '#fff';
+    	particle.fillColor = '#5DC2FF';
+    	particle.fillColor.alpha = 0.6;
+    	
+    	particles.addChild(particle);
+    
+    
+    
+    
+    function onFrame(){
+    	
+    	
+    		dX = (circle_pos.x - particle.position.x)/20;
+    		dY = (circle_pos.y - particle.position.y)/20;
+    		
+		    particle.position.x += dX;
+			particle.position.y += dY;
+			
+			tracciato.add(new Point(particle.position)); 
+			
+			circle.position = pointer;
+			
+			
+			if(tracciato.segments.length > 30) {
+			
+    			tracciato.removeSegment(0);
+				
+			} else {
+				
+				return false;
+			
+			}
+			
+			
+			    
+    }
+    
+    
+    
+    
+    
+    $(document).click(function(){
+    	
+    	var last = tracciato.lastSegment.index;
+    	
+    	tracciato.removeSegment(last);
+    	
+    	
+    })
+    
+ 
+    
+    
+    function onMouseMove(event){
+    
+    	pointer = event.point;
+    	circle_pos = circle.lastSegment.point;
+    
+    }
+    
+    
+//    		
+//	  var gui = new dat.GUI();
+//	  
+//	  var stroke = gui.add(defaults, 'stroke', 1, 20);
+//	  var autoPilot = gui.add(defaults, 'autoPilot');
+//	  
+//	  gui.add(text, 'message');
+//	  gui.add(text, 'speed', -5, 5);
+//	  gui.add(text, 'displayOutline');
+//	  gui.add(text, 'explode');
+//
+//	
+//	  stroke.onChange(function(value) {
+//	  
+//	  	tracciato.strokeWidth = defaults.stroke;
+//	    
+//	  });
+//    		  
+//    		
+    
+    
+   
+    
+
+	
+</script>
+
+<script type="text/javascript">
+	
+	
+	
+	
+		
+	
+	
+	
+
+
+
+</script>
+
+
+</head>
+<body>
+	<canvas id="myCanvas" resize></canvas>
+
+</body>
+</html>
