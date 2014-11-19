@@ -2,11 +2,267 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>RL</title>
+    <title>Renato Longobardi</title>
+
+    <link rel="stylesheet" href="sass/rl.css"/>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js"></script>
+
+
 </head>
 <body>
 
-<h1>RL it's work!</h1>
+
+<div id="webgl"></div>
+
+<div class="hero">
+
+
+    <svg id="logo" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	  viewBox="0 0 102.158 102.158" enable-background="new 0 0 102.158 102.158"
+	 xml:space="preserve">
+<g>
+	<path class="rect animated fadeIn" fill="#FFFFFF" d="M102.158,102.158H0V0h102.158V102.158z M4,98.158h94.158V4H4V98.158z"/>
+</g>
+<g>
+	<path class="r-letter animated fadeInUp" fill="#FFFFFF" d="M46.703,59.938l-7.668-9.887c-0.155-0.233-0.389-0.35-0.662-0.35h-2.841v10.237H30.86V33.975h14.48
+		c0.74,0,1.362,0.272,1.868,0.778l2.569,2.569c0.545,0.545,0.817,1.168,0.817,1.946v5.138c0,0.779-0.272,1.401-0.817,1.946
+		l-2.569,2.569c-0.506,0.506-1.128,0.778-1.868,0.778h-0.934l8.019,10.237H46.703z M45.924,40.047c0-0.234-0.078-0.389-0.234-0.545
+		l-0.856-0.856c-0.156-0.156-0.312-0.233-0.545-0.233h-8.758v6.851h8.758c0.234,0,0.39-0.078,0.545-0.233l0.856-0.856
+		c0.156-0.156,0.234-0.312,0.234-0.545V40.047z"/>
+	<path class="l-letter animated fadeInDown" fill="#FFFFFF" d="M57.443,59.938V33.975h4.672V55.5h12.729v4.438H57.443z"/>
+</g>
+<g>
+	<rect class="underline animated rotateInDownRight" x="30.876" y="66.622" fill="#FFFFFF" width="43.923" height="4.218"/>
+</g>
+</svg>
+
+    <h1 class="jobtitle">
+        <strong class="name animated fadeInUp">Renato Longobardi</strong>
+        <p class="job animated fadeInUp">< senior frontend & interactive developer /></p>
+
+    </h1>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+    $(document).ready(function(){
+
+        wireframe();
+
+        $(window).load(function(){
+
+            logoAnimation();
+
+        })
+
+        function logoAnimation(){
+
+            setTimeout(function(){  $('.underline').show() },100);
+            setTimeout(function(){  $('.r-letter').show() },200);
+            setTimeout(function(){  $('.l-letter').show() },300);
+            setTimeout(function(){  $('.rect').show() },700);
+
+            setTimeout(function(){  $('.name').css('display','block') },1500);
+            setTimeout(function(){  $('.job').css('display','inline-block') },1700);
+
+
+        }
+
+
+        function wireframe(){
+
+            var mouseX = 0, mouseY = 0,
+
+                    windowHalfX = window.innerWidth / 2,
+                    windowHalfY = window.innerHeight / 2,
+
+                    SEPARATION = 200,
+                    AMOUNTX = 10,
+                    AMOUNTY = 10,
+
+                    camera, scene, renderer;
+
+            init();
+            animate();
+
+            function init() {
+
+                var container, separation = 1000, amountX = 150, amountY = 150,
+                        particles, particle;
+
+                container = document.getElementById('webgl');
+
+
+                camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+                camera.position.z = 500;
+
+                scene = new THREE.Scene();
+
+                renderer = new THREE.CanvasRenderer();
+                renderer.setSize( window.innerWidth, window.innerHeight );
+
+                renderer.setClearColor( 0x1B1B1B, 1 );
+
+
+                container.appendChild( renderer.domElement );
+
+
+                // particles
+
+                var PI2 = Math.PI * 2;
+                var material = new THREE.SpriteCanvasMaterial( {
+
+                    color: 0xffffff,
+                    program: function ( context ) {
+
+                        context.beginPath();
+                        context.arc( 0, 0, 0.3, 0, PI2, true );
+                        context.fill();
+
+                    }
+
+                } );
+
+                var geometry = new THREE.Geometry();
+                var geometry2 = new THREE.Geometry();
+
+                for ( var i = 0; i < 100; i ++ ) {
+
+                    particle = new THREE.Sprite( material );
+                    particle.position.x = Math.random() * 2 - 1;
+                    particle.position.y = Math.random() * 2 - 1;
+                    particle.position.z = Math.random() * 2 - 1;
+                    particle.position.normalize();
+                    particle.position.multiplyScalar( Math.random() * 10 + 450 );
+                    particle.scale.x = particle.scale.y = 2;
+                    scene.add( particle );
+
+                    geometry.vertices.push( particle.position );
+
+                }
+
+                for ( var i = 0; i < 100; i ++ ) {
+
+                    particle2 = new THREE.Sprite( material );
+                    particle2.position.x = Math.random() * 2 - 1;
+                    particle2.position.y = Math.random() * 2 - 1;
+                    particle2.position.z = Math.random() * 2 - 1;
+                    particle2.position.normalize();
+                    particle2.position.multiplyScalar( Math.random() * 10 + 450 );
+                    particle2.scale.x = particle.scale.y = 2;
+                    scene.add( particle2 );
+
+                    geometry2.vertices.push( particle2.position );
+
+                }
+
+
+
+                // lines
+
+                var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0x19C2CF, opacity: 0.3 } ) );
+                scene.add( line );
+
+                var line2 = new THREE.Line( geometry2, new THREE.LineBasicMaterial( { color: 0xCF4544, opacity: 0.3 } ) );
+                scene.add( line2 );
+
+
+                document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+                document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+                document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+
+                //
+
+                window.addEventListener( 'resize', onWindowResize, false );
+
+            }
+
+            function onWindowResize() {
+
+                windowHalfX = window.innerWidth / 2;
+                windowHalfY = window.innerHeight / 2;
+
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize( window.innerWidth, window.innerHeight );
+
+            }
+
+            //
+
+            function onDocumentMouseMove(event) {
+
+                mouseX = event.clientX - windowHalfX;
+                mouseY = event.clientY - windowHalfY;
+
+            }
+
+            function onDocumentTouchStart( event ) {
+
+                if ( event.touches.length > 1 ) {
+
+                    event.preventDefault();
+
+                    mouseX = event.touches[ 0 ].pageX - windowHalfX;
+                    mouseY = event.touches[ 0 ].pageY - windowHalfY;
+
+                }
+
+            }
+
+            function onDocumentTouchMove( event ) {
+
+                if ( event.touches.length == 1 ) {
+
+                    event.preventDefault();
+
+                    mouseX = event.touches[ 0 ].pageX - windowHalfX;
+                    mouseY = event.touches[ 0 ].pageY - windowHalfY;
+
+                }
+
+            }
+
+            //
+
+            function animate() {
+
+                requestAnimationFrame( animate );
+
+                render();
+
+            }
+
+            function render() {
+
+                camera.position.x += ( mouseX - camera.position.x ) * .05;
+                camera.position.y += ( - mouseY + 200 - camera.position.y ) * .05;
+                camera.lookAt( scene.position );
+
+                renderer.render( scene, camera );
+
+            }
+
+        }
+
+
+    })
+
+
+
+
+</script>
 
 </body>
 </html>
