@@ -1,69 +1,12 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Renato Longobardi</title>
+define(["jquery",'threeold'], function($, THREE) {
 
-    <link rel="stylesheet" href="sass/rl.css"/>
-
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r68/three.min.js"></script>
-
-
-</head>
-<body>
-
-
-<div id="webgl"></div>
-
-<div class="hero">
-
-
-    <svg id="logo" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	  viewBox="0 0 102.158 102.158" enable-background="new 0 0 102.158 102.158"
-	 xml:space="preserve">
-<g>
-	<path class="rect animated fadeIn" fill="#FFFFFF" d="M102.158,102.158H0V0h102.158V102.158z M4,98.158h94.158V4H4V98.158z"/>
-</g>
-<g>
-	<path class="r-letter animated fadeInUp" fill="#FFFFFF" d="M46.703,59.938l-7.668-9.887c-0.155-0.233-0.389-0.35-0.662-0.35h-2.841v10.237H30.86V33.975h14.48
-		c0.74,0,1.362,0.272,1.868,0.778l2.569,2.569c0.545,0.545,0.817,1.168,0.817,1.946v5.138c0,0.779-0.272,1.401-0.817,1.946
-		l-2.569,2.569c-0.506,0.506-1.128,0.778-1.868,0.778h-0.934l8.019,10.237H46.703z M45.924,40.047c0-0.234-0.078-0.389-0.234-0.545
-		l-0.856-0.856c-0.156-0.156-0.312-0.233-0.545-0.233h-8.758v6.851h8.758c0.234,0,0.39-0.078,0.545-0.233l0.856-0.856
-		c0.156-0.156,0.234-0.312,0.234-0.545V40.047z"/>
-	<path class="l-letter animated fadeInDown" fill="#FFFFFF" d="M57.443,59.938V33.975h4.672V55.5h12.729v4.438H57.443z"/>
-</g>
-<g>
-	<rect class="underline animated rotateInDownRight" x="30.876" y="66.622" fill="#FFFFFF" width="43.923" height="4.218"/>
-</g>
-</svg>
-
-    <h1 class="jobtitle">
-        <strong class="name animated fadeInUp">Renato Longobardi</strong>
-        <p class="job animated fadeInUp">< senior frontend & interactive developer /></p>
-
-    </h1>
-
-
-</div>
-
-
-
-
-
-<script>
 
 
     $(document).ready(function(){
 
+
         wireframe();
-
-        $(window).load(function(){
-
-            logoAnimation();
-
-        })
+        logoAnimation();
 
         function logoAnimation(){
 
@@ -83,14 +26,14 @@
 
             var mouseX = 0, mouseY = 0,
 
-                    windowHalfX = window.innerWidth / 2,
-                    windowHalfY = window.innerHeight / 2,
+                windowHalfX = window.innerWidth / 2,
+                windowHalfY = window.innerHeight / 2,
 
-                    SEPARATION = 200,
-                    AMOUNTX = 10,
-                    AMOUNTY = 10,
+                SEPARATION = 200,
+                AMOUNTX = 10,
+                AMOUNTY = 10,
 
-                    camera, scene, renderer;
+                camera, scene, renderer;
 
             init();
             animate();
@@ -98,7 +41,7 @@
             function init() {
 
                 var container, separation = 1000, amountX = 150, amountY = 150,
-                        particles, particle;
+                    particles, particle;
 
                 container = document.getElementById('webgl');
 
@@ -260,9 +203,9 @@
     })
 
 
+    console.log('wiframe MOD loaded');
 
 
-</script>
 
-</body>
-</html>
+});
+

@@ -1,30 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Load the Paper.js library -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script> 
-<script type="text/javascript" src="js/dat.gui.js"></script>
-<script type="text/javascript" src="js/paper.js"></script>
-<script type="text/javascript" src="js/asset.js"></script>
-<script type="text/javascript" src="js/tween.js"></script>
+    <!-- Load the Paper.js library -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="js/dat.gui.js"></script>
+    <script type="text/javascript" src="js/paper.js"></script>
+    <script type="text/javascript" src="js/asset.js"></script>
+    <script type="text/javascript" src="js/tween.js"></script>
 
     <script src="js/headtrackr.min.js"></script>
 
 
-<!-- Define inlined PaperScript associate it with myCanvas -->
+    <!-- Define inlined PaperScript associate it with myCanvas -->
 
-<style>
+    <style>
 
-	* { padding: 0;margin: 0 }
+        * { padding: 0;margin: 0 }
 
-	body {
+        #myCamera {
+            width: 260px;
+            height: 200px;
+            position: fixed;
+            z-index: 9999;
+            top: 10px;
+            left: 20px;
+        }
 
-	}
-	
 
-</style>
+    </style>
 
-<script type="text/paperscript" canvas="myCanvas">
+    <script type="text/paperscript" canvas="myCanvas">
+
+  var videoInput = document.getElementById('inputVideo');
+  var canvasInput = document.getElementById('myCamera');
+
 
 	var defaults = {
 
@@ -79,7 +88,7 @@
 
 			if(tracciato.segments.length > defaults.tentacles) {
 
-			console.log(tracciato.segments.length +' > '+defaults.tentacles);
+			//console.log(tracciato.segments.length +' > '+defaults.tentacles);
 
     			tracciato.removeSegment(0);
 
@@ -105,6 +114,20 @@
 
     })
 
+      var htracker = new headtrackr.Tracker();
+      htracker.init(videoInput,canvasInput);
+      htracker.start();
+
+      $(document).on('headtrackingEvent',function(e){
+
+            var x = e.originalEvent.x;
+
+            var point = new Point(e.originalEvent.x.e.originalEvent.y)
+
+            pointer = point;
+
+
+      })
 
 
 
@@ -147,24 +170,27 @@
 
 </script>
 
-<script type="text/javascript">
-	
-	
-	
-	
-		
-	
-	
-	
+    <script type="text/javascript">
 
 
 
-</script>
+
+
+
+
+
+
+
+
+    </script>
 
 
 </head>
 <body>
-	<canvas id="myCanvas" resize></canvas>
+<canvas id="myCanvas" resize></canvas>
+<canvas id="myCamera" resize></canvas>
+
+<video id="inputVideo" autoplay loop></video>
 
 </body>
 </html>
