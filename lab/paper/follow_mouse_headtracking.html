@@ -35,6 +35,12 @@
   var canvasInput = document.getElementById('myCamera');
 
 
+  var HEAD = {
+    x : view.center.x,
+    y: view.center.y
+  }
+
+
 	var defaults = {
 
 		stroke : 1,
@@ -49,7 +55,6 @@
 
 
     var pointer = view.center;
-
 
     tracciato.strokeColor = 'red';
     tracciato.strokeWidth = defaults.stroke;
@@ -70,21 +75,16 @@
     	particles.addChild(particle);
 
 
-
-
     function onFrame(){
 
 
-    		dX = (pointer.x - particle.position.x)/20;
-    		dY = (pointer.y - particle.position.y)/20;
+    		dX = (HEAD.x - particle.position.x)/20;
+    		dY = (HEAD.y - particle.position.y)/20;
 
 		    particle.position.x += dX;
 			particle.position.y += dY;
 
 			tracciato.add(new Point(particle.position));
-
-
-
 
 			if(tracciato.segments.length > defaults.tentacles) {
 
@@ -102,9 +102,6 @@
     }
 
 
-
-
-
     $(document).click(function(){
 
     	var last = tracciato.lastSegment.index;
@@ -120,14 +117,33 @@
 
       $(document).on('headtrackingEvent',function(e){
 
-            var x = e.originalEvent.x;
+            var x = (e.originalEvent.x * 10)*-1;
+            var y = (e.originalEvent.y * 10)*-1;
 
-            var point = new Point(e.originalEvent.x.e.originalEvent.y)
 
-            pointer = point;
+            HEAD.x = x + view.center.x ;
+            HEAD.y = y + view.center.y;
+
+            console.log(HEAD);
+
+
 
 
       })
+
+      $(document).on("facetrackingEvent", function( event ) {
+				// clear canvas
+				canvasInput.clearRect(0,0,320,240);
+				// once we have stable tracking, draw rectangle
+				if (event.detection == "CS") {
+					canvasInput.translate(event.x, event.y)
+					canvasInput.rotate(event.angle-(Math.PI/2));
+					canvasInput.strokeStyle = "#00CC00";
+					canvasInput.strokeRect((-(event.width/2)) >> 0, (-(event.height/2)) >> 0, event.width, event.height);
+					canvasInput.rotate((Math.PI/2)-event.angle);
+					canvasInput.translate(-event.x, -event.y);
+				}
+			});
 
 
 
