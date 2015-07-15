@@ -1,0 +1,482 @@
+/*@import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);*/
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web:400,900,700,300,200);
+@import url('reset.css');
+
+html,body {
+    width:100%;
+    height: 100%;
+}
+
+body {
+    background: #000;
+    color:#fff;
+    font-family: 'Titillium Web', Helverica, Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    perspective: 1000px;
+
+}
+
+header {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    right: 0;
+    top: 0;
+    z-index: 200;
+}
+
+header .cta-menu {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 300;
+    display: block;
+
+}
+
+header .menu {
+    position: absolute;
+    top: 6px;
+    right: 15px;
+    z-index: 200;
+
+
+}
+
+header:hover {
+    cursor: pointer;
+}
+
+header:hover .menu svg {
+    fill:#1abc9c;
+    transition: fill 1s;
+}
+
+header.open:hover .menu svg {
+    fill:#000;
+}
+
+header .menu svg {
+    fill:#fff;
+    widows: 50px;
+    height: 50px;
+}
+
+
+
+#logo {
+    width:120px;
+}
+
+.contacts {
+    position: fixed;
+    background-color: rgba(26, 188, 156, 0.95);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10% 15%;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.contacts .inner {
+    width:100%;
+    height: 100%;
+    font-size: 40px;
+}
+
+h2 {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 40px;
+}
+
+h2::after {
+    width: 0;
+    background-color: #fff;
+    height: 1px;
+    position: absolute;
+    content: "";
+    bottom: -23px;
+    left: 0;
+}
+
+h2.underline::after {
+    width: 100%;
+    transition: width 1000ms cubic-bezier(1, 0, 0, 1);
+
+
+}
+
+.ico-group {
+    position: relative;
+    padding-top: 20px;
+    top: -17px;
+    overflow: hidden;
+}
+
+.ico-group a {
+    fill:#fff;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    transition: fill 1000ms;
+    margin-right: 10px;
+    opacity: 0;
+}
+
+.ico-group a:hover svg {
+    fill:#000;
+    transition: fill 1000ms;
+}
+
+.ico-group a svg {
+    fill:#fff;
+    width:100%;
+    height: 100%;
+}
+
+.ico-group a:first-child {
+    margin-right: 14px;
+}
+
+#logo {
+    margin-bottom: 20px;
+}
+
+.contacts .inner {
+
+}
+
+.contacts .inner h1 {
+    color: #fff;
+   }
+
+
+
+.wrapper {
+    width:100%;
+    height: 100%;
+    perspective: 1000px;
+    overflow: hidden;
+
+}
+
+
+
+.stage {
+    width:100%;
+    height: 100%;
+    position: relative;
+}
+
+.stage.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.sentence-wrp {
+    width: 70%;
+    height: 65%;
+    padding:3%;
+    box-sizing: border-box;
+    transition: top .2s, left: .2s;
+    perspective: 1000px;
+    text-align: center;
+    z-index: 10;
+    position: relative;
+
+
+}
+
+
+
+
+.ico {
+    display: block;
+    margin: 0 auto 2%;
+    width: 50%;
+    transition: width .5s;
+    text-align: center;
+}
+
+
+.sentence {
+    color: #fff;
+    font-size: 4vw;
+    font-weight: 200;
+    text-transform: uppercase;
+    padding: 2% 0;
+
+}
+
+.sentence .typing {
+}
+
+.sentence .typing strong {
+    font-weight: bolder;
+    /*color: rgb(26, 188, 156);*/
+}
+.answers, .answers2 {
+    margin: 3% auto 0;
+}
+
+
+
+.answers a, .answers2 a  {
+    display: inline-block;
+    color: #fff;
+    padding: 9px;
+    margin: 9px;
+    box-sizing: border-box;
+    font-size: 2vw;
+    font-weight: bolder;
+    opacity:0;
+    transition: background-color .2s, color .2s;
+    border: 2px solid #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.answers a span, .answers2 a span {
+    position: relative;
+    z-index: 2;
+    display: block;
+}
+
+.answers a::after, .answers2 a::after {
+    width: 100%;
+    background: #FFF;
+    height: 100%;
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+}
+
+.answers a:hover, .answers2 a:hover {
+    color:#000;
+    transform: scale(2);
+    transition: color .4s;
+    cursor: pointer;
+
+}
+
+.answers a:hover::after, .answers2 a:hover::after {
+    top:0;
+    transition: all .3s;
+}
+
+
+
+.typed-cursor{
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+
+
+.step-3-a .ico, .step-4-a .ico {
+    opacity: 0;
+    fill:#fff;
+
+}
+
+.step-4-a .ico {
+    width:30%;
+
+}
+
+.step-3-a .ico path {
+
+}
+
+.step-5 .ico {
+    position: relative;
+    width:30%;
+}
+
+.step-5 .ico::after {
+    display: none;
+}
+
+.step-5 .ico.pulse {
+    cursor: pointer;
+}
+
+.step-5 .ico.pulse::after {
+    content: '';
+    position: absolute;
+    border: 4px solid #FFF;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    animation: circles infinite 2s;
+    display: block;
+}
+
+
+@keyframes circles{
+    0% { transform:scale(0) }
+    100% { transform:scale(1.5); opacity: 0 }
+}
+
+.restart {
+    position: fixed;
+    left: 15px;
+    top: 16px;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 19px;
+    text-transform: uppercase;
+    display: none;
+    z-index: 5;
+
+}
+
+.restart span {
+    position: relative;
+    top: -5px;
+    left: 3px;
+}
+
+
+#webgl {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100%;
+    opacity: 0.8;
+}
+
+#webgl::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#webgl.curtain::after {
+    width:100%;
+    height: 0%;
+    transition: all 1000ms cubic-bezier(1, 0, 0, 1);
+}
+
+#metal {
+    width:15%;
+    display: block;
+    margin: 0 auto 0;
+    position: relative;
+    top: 1450px;
+}
+
+.circle {
+    width: 150%;
+    height: 150%;
+    position: absolute;
+    background-color: #FF5353;
+    bottom: -150%;
+    left: -25%;
+    border-radius: 100% 100% 0 0;
+    z-index: 10;
+}
+
+.circle.move {
+    transition: all 3000ms cubic-bezier(1, 0, 0, 1);
+    bottom:0%;
+}
+
+
+.bg {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    position: absolute;
+    z-index: 10;
+    left: 0;
+    top: 100%;
+
+}
+
+#loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 10%;
+    margin-top: -5%;
+    margin-left: -5%;
+
+}
+
+#loader.hide {
+    display: none;
+}
+
+.bg.colorize {
+    top:0;
+    transition: all 1000ms cubic-bezier(1, 0, 0, 1);
+}
+
+
+
+
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
