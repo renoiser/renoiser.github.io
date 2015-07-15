@@ -4,8 +4,6 @@ require.config({
         jquery: 'jquery/dist/jquery.min',
         three : 'three.js/three.min',
         threeold: '../scripts/three_old',
-
-
         app: '../app'
     },
     shim: {
@@ -25,12 +23,7 @@ require.config({
 });
 
 
-
-require(['app/wireframe','app/main'],function(wireframe, main){
-
-
-
-})
+require(['app/wireframe','app/main'],function(wireframe, main){})
 
 
 

@@ -1,9 +1,6 @@
 define(["jquery",'threeold'], function($, THREE) {
 
-
-
     $(document).ready(function(){
-
 
         wireframe();
         logoAnimation();
@@ -201,9 +198,6 @@ define(["jquery",'threeold'], function($, THREE) {
 
 
     })
-
-
-    console.log('wiframe MOD loaded');
 
 
 

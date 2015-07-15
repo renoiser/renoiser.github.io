@@ -2166,10 +2166,8 @@ body {
   background: #000;
   color: #fff;
   font-family: 'titillium web', sans-serif;
-  font-weight: 200; 
-overflow: hidden;
-   
-}
+  font-weight: 200;
+  overflow: hidden; }
 
 .hero {
   position: relative;
@@ -2195,6 +2193,19 @@ overflow: hidden;
   position: absolute;
   left: 0;
   top: 0; }
+
+#github {
+  display: block;
+  position: fixed;
+  top: 16px;
+  right: 16px; }
+
+#github svg {
+  fill: #fff; }
+
+#github:hover svg {
+  fill: #1abc9c !important;
+  transition: fill 1s; }
 
 h1 {
   -webkit-font-smoothing: antialiased;

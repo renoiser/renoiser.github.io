@@ -10,6 +10,7 @@ body {
   color: #fff;
   font-family: 'titillium web', sans-serif;
   font-weight: 200;
+  overflow: hidden;
 
 }
 
@@ -45,6 +46,22 @@ body {
   left: 0;
   top: 0;
 
+}
+
+#github {
+  display: block;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+}
+
+#github svg {
+  fill: #fff;
+}
+
+#github:hover svg {
+  fill: rgb(26, 188, 156) !important;
+  transition: fill 1s;
 }
 
 
