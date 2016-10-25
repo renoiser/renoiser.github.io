@@ -21,7 +21,8 @@ require.config({
 
         wireframe : 'three/wireframe',
 
-        app : 'app'
+        app : 'app',
+        main: 'main'
     },
     shim : {
         jquery : { exports: '$' },
@@ -42,9 +43,4 @@ require.config({
     }
 });
 
-
-require(['app'],function(APP){
-
-    APP.init();
-
-})
+require(['main']);

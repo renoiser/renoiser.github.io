@@ -3,383 +3,491 @@
 define(['jquery','tweenMax','wireframe'],function($,tweenMax, WRF){
 
 
-   var SentenceController = function($scope, $state, $timeout, $rootScope, $stateParams, $rootScope){
+  var SentenceController = function($scope, $state, $timeout, $rootScope, $stateParams, $rootScope){
 
-       var Loader = {
-           el : $('#loader'),
+    var Loader = {
+      el : $('#loader'),
 
-           show : function(){
-               Loader.el.removeClass('hide');
-           },
+      show : function(){
+        Loader.el.removeClass('hide');
+      },
 
-           hide : function(){
-               Loader.el.addClass('hide');
-           }
-       }
+      hide : function(){
+        Loader.el.addClass('hide');
+      }
+    }
 
 
-       switch ($state.current.name) {
+    switch ($state.current.name) {
 
-           /* step-1
-           ___________________________________________________________________________ */
+      /* step-1
+      ___________________________________________________________________________ */
 
-           case 'step-1' :
+      case 'step-1' :
 
-               console.log('init app -> ', $stateParams.name);
+      console.log('init app -> ', $stateParams.name);
 
-               $('.restart').hide();
+      $('.restart').hide();
 
-               if($stateParams.name === '') {
-                  $scope.visitor = 'visitor';
-               } else {
-                   $scope.visitor = $stateParams.name;
-               }
+      if($stateParams.name === '') {
 
+        if(window.localStorage) {
+          if(window.localStorage.getItem('name') !== null) {
+            $scope.visitor = window.localStorage.getItem('name');
+          } else {
+            $scope.visitor = 'visitor';
+          }
+        } else {
+          $scope.visitor = 'visitor';
+        }
 
-               $scope.text = ['Hello^500 <strong>'+$scope.visitor+'</strong>, ^1000 <br> HOW ARE YOU?']
+      } else {
+        $scope.visitor = $stateParams.name;
+        if(window.localStorage) {
+          window.localStorage.setItem('name', $scope.visitor);
+        }
+      }
 
-               $scope.$on('$viewContentLoaded',function(){
 
-                   Loader.hide();
+      $scope.text = ['Hello^500 <strong>'+$scope.visitor+'</strong>, ^1000 <br> HOW ARE YOU?'];
 
-                   $scope.$broadcast('typing');
-               })
+      if(Modernizr.speechsynthesis) {
+        var Voice = new SpeechSynthesisUtterance();
+        Voice.lang = 'en-EN';
+        Voice.text = 'Hello '+$scope.visitor+' !How are you?';
+        speechSynthesis.speak(Voice);
+      }
 
+      $scope.$on('$viewContentLoaded',function(){
 
-               break;
+        Loader.hide();
 
-           /* step-2.a
-            ___________________________________________________________________________ */
+        $scope.$broadcast('typing');
+      })
 
-           case 'step-2.a' :
 
-               Loader.show();
+      break;
 
-               $scope.icon = 'thumb_up';
-               $scope.text = ["Great!^500 <br/> I'm happy you're good.", "Can i introduce my self?"];
+      /* step-2.a
+      ___________________________________________________________________________ */
 
+      case 'step-2.a' :
 
-               $scope.$on('$viewContentLoaded',function(){
+      Loader.show();
 
-                   Loader.hide();
+      $scope.icon = 'thumb_up';
+      $scope.text = ["Great!^500 <br/> I'm happy you're good.", "Can i introduce my self?"];
 
-                   $timeout(function(){
-                       $scope.icon = 'face';
-                       $('.ico').css({'width':'15%'});
-                       $scope.$broadcast('typing');
+      if(Modernizr.speechsynthesis) {
+        var Voice = new SpeechSynthesisUtterance();
+        Voice.lang = 'en-EN';
+        Voice.text = "!Great! I'm happy you're good. Can i introduce my self?";
+        speechSynthesis.speak(Voice);
+      }
 
-                   },700)
 
-               })
 
-               break;
 
-           /* step-2.b
-            ___________________________________________________________________________ */
+      $scope.$on('$viewContentLoaded',function(){
 
-           case 'step-2.b' :
+        Loader.hide();
 
-               Loader.show();
+        $timeout(function(){
+          $scope.icon = 'face';
+          $('.ico').css({'width':'15%'});
+          $scope.$broadcast('typing');
 
+        },700)
 
-               $scope.icon = 'bad';
-               $scope.text =
-                   ["Oh!^500 Really sorry <br/>is not a great day.^600",
-                    "Can i introduce my self?^500 <br/> <strong>Anyway?</strong>"];
+      })
 
-               $scope.$on('$viewContentLoaded',function(){
+      break;
 
-                   Loader.hide();
+      /* step-2.b
+      ___________________________________________________________________________ */
 
+      case 'step-2.b' :
 
-                   $timeout(function(){
-                       $('.ico').css({'width':'15%'});
-                       $scope.$broadcast('typing');
+      Loader.show();
 
-                   },700)
 
-               })
+      $scope.icon = 'bad';
+      $scope.text =
+      ["Oh!^500 Really sorry <br/>is not a great day.^600",
+      "Can i introduce my self?^500 <br/> <strong>Anyway?</strong>"];
 
-               break;
+      if(Modernizr.speechsynthesis) {
+        var Voice = new SpeechSynthesisUtterance();
+        Voice.lang = 'en-EN';
+        Voice.text = "Oh! Really sorry is not a great day";
+        speechSynthesis.speak(Voice);
 
-           /* step-3.a
-            ___________________________________________________________________________ */
+        setTimeout(function () {
+          var Voice = new SpeechSynthesisUtterance();
+          Voice.lang = 'en-EN';
+          Voice.text = "Can i introduce my self anyway?";
+          speechSynthesis.speak(Voice);
+        }, 4000);
+      }
 
-           case 'step-3.a' :
+      $scope.$on('$viewContentLoaded',function(){
 
-               Loader.show();
+        Loader.hide();
 
-               $scope.icon = 'code';
 
-               $scope.text =
-                   ["My name is^500 <br/> <strong>Renato Longobardi</strong> ^1000",
-                    "I'm a senior<br/>  <strong> frontend developer</strong> ^800",
-                    ""];
+        $timeout(function(){
+          $('.ico').css({'width':'15%'});
+          $scope.$broadcast('typing');
 
-               $scope.text2 =
-                   ["I love coding ^800",
-                    "i'm passionate about <br/> <strong>digital, web and interactive</strong> ^500",
-                    "i love research^500<br/>and experiment with <br/><strong>latest technologies^500</strong>"];
+        },700)
 
-               $scope.$on('$viewContentLoaded',function(){
+      })
 
-                   Loader.hide();
+      break;
 
-                   $scope.$broadcast('typing');
+      /* step-3.a
+      ___________________________________________________________________________ */
 
-                   $scope.$on('type-completed',function(){
+      case 'step-3.a' :
 
-                       $('.typing').removeData('typed');
-                       $('.typed-cursor:first').remove();
+      Loader.show();
 
-                       $('.typing').typed({
-                           strings: $scope.text2,
-                           contentType: 'html',
-                           typeSpeed: 0,
-                               preStringTyped : function(e){
-                              if(e+1 == 1) {
-                                  animation_1();
-                              }
-                              if(e+1 == 2) {
-                                   animation_2();
-                              }
-                              if(e+1 == 3) {
-                                   animation_3();
-                              }
+      $scope.icon = 'code';
 
+      $scope.text =
+      ["My name is^500 <br/> <strong>Renato Longobardi</strong> ^1000",
+      "I'm a senior<br/>  <strong> frontend developer</strong> ^800",
+      ""];
 
-                           }
-                       })
+      $scope.text2 =
+      ["I love coding ^800",
+      "i'm passionate about <br/> <strong>digital, web and interactive</strong> ^500",
+      "i love research^500<br/>and experiment with <br/><strong>latest technologies^500</strong>"];
 
+      if(Modernizr.speechsynthesis) {
+        var Voice = new SpeechSynthesisUtterance();
+        Voice.lang = 'en-EN';
+        Voice.text = "My name is Renato Longobardi";
+        speechSynthesis.speak(Voice);
 
-                   })
+        setTimeout(function () {
+          var Voice = new SpeechSynthesisUtterance();
+          Voice.lang = 'en-EN';
+          Voice.text = "I'm a senior frontend developer";
+          speechSynthesis.speak(Voice);
 
-                   function animation_1(){
+          setTimeout(function () {
+            var Voice = new SpeechSynthesisUtterance();
+            Voice.lang = 'en-EN';
+            Voice.text = "I love coding";
+            speechSynthesis.speak(Voice);
 
-                       tweenMax.fromTo($('.ico.i-1'),1,
-                           {
-                               opacity: 0,
-                               y: 100
-                               },
-                           {
-                               opacity: 1,
-                               y:0,
-                               rotationZ: 0,
-                               ease: Elastic.easeOut,
-                           }
-                       )
+            setTimeout(function () {
+              var Voice = new SpeechSynthesisUtterance();
+              Voice.lang = 'en-EN';
+              Voice.text = "i'm passionate about digital, web and interactive";
+              speechSynthesis.speak(Voice);
 
-                   }
+              setTimeout(function () {
+                var Voice = new SpeechSynthesisUtterance();
+                Voice.lang = 'en-EN';
+                Voice.text = "i love research and experiment with latest technologies";
+                speechSynthesis.speak(Voice);
+              }, 5200);
 
-                   function animation_2(){
 
+            }, 3200);
 
-                       $scope.$apply(function(){
-                           $scope.icon = 'web_ico';
-                       })
+          }, 3000);
 
-                       $timeout(function(){
-                           $scope.icon = 'desktop_windows';
-                       },1500)
 
-                       $timeout(function(){
-                           $scope.icon = 'laptop_mac';
-                       },2500)
+        }, 3500);
 
-                       $timeout(function(){
-                           $scope.icon = 'phone_android';
-                       },3500)
 
+      }
 
-                   }
+      $scope.$on('$viewContentLoaded',function(){
 
-                   function animation_3(){
+        Loader.hide();
 
-                       WRF.start('webgl');
-                       $('#webgl').addClass('curtain');
+        $scope.$broadcast('typing');
 
-                       $('.ico').fadeOut();
+        $scope.$on('type-completed',function(){
 
-                       $timeout(function(){
+          $('.typing').removeData('typed');
+          $('.typed-cursor:first').remove();
 
+          $('.typing').typed({
+            strings: $scope.text2,
+            contentType: 'html',
+            typeSpeed: 0,
+            preStringTyped : function(e){
+              if(e+1 == 1) {
+                animation_1();
+              }
+              if(e+1 == 2) {
+                animation_2();
+              }
+              if(e+1 == 3) {
+                animation_3();
+              }
 
-                           tweenMax.fromTo('.answers2 a',.6,
-                               {opacity : 0, y: 200, scale: 1.2},
-                               {opacity: 1 ,y: 1, scale: 1,ease: Expo.easeOut}
-                               ,.2)
 
-                       },4000)
-                   }
+            }
+          })
 
-                   $scope.continue = function(){
 
-                       $('.bg').addClass('colorize');
+        })
 
-                       tweenMax.to($('.sentence-wrp'),1,
-                           {y: '-=100px'})
+        function animation_1(){
 
-                       $timeout(function(){
-                           $state.go('step-4.a');
-                       },1000)
+          tweenMax.fromTo($('.ico.i-1'),1,
+          {
+            opacity: 0,
+            y: 100
+          },
+          {
+            opacity: 1,
+            y:0,
+            rotationZ: 0,
+            ease: Elastic.easeOut,
+          }
+        )
 
+      }
 
-                   }
+      function animation_2(){
 
 
+        $scope.$apply(function(){
+          $scope.icon = 'web_ico';
+        })
 
-               })
+        $timeout(function(){
+          $scope.icon = 'desktop_windows';
+        },1500)
 
-               break;
+        $timeout(function(){
+          $scope.icon = 'laptop_mac';
+        },2500)
 
-           /* step-4
-            ___________________________________________________________________________ */
+        $timeout(function(){
+          $scope.icon = 'phone_android';
+        },3500)
 
-           case 'step-4.a' :
 
-               Loader.show();
+      }
 
-                $scope.icon = 'favorite_outline';
-               $scope.text =
-                   ["I'm searching for <br/>interesting company^1000,<strong>like you^1000</strong>",
-                    "to working and </br>make <strong>kickass projects</strong>"];
+      function animation_3(){
 
-               $scope.$on('$viewContentLoaded',function(){
+        WRF.start('webgl');
+        $('#webgl').addClass('curtain');
 
-                   Loader.hide();
+        $('.ico').fadeOut();
 
-                   $scope.$broadcast('typing');
+        $timeout(function(){
 
-                   $scope.$on('preStringTyped',function(e,value){
 
-                       if(value == 1) {
+          tweenMax.fromTo('.answers2 a',.6,
+          {opacity : 0, y: 200, scale: 1.2},
+          {opacity: 1 ,y: 1, scale: 1,ease: Expo.easeOut}
+          ,.2)
 
-                           tweenMax.to('.ico',2,{
-                               scale : 4,
-                               opacity: 0,
-                               ease: Expo.easeOut,
-                               delay:1,
-                               width:0,
-                               margin:'0 auto 0'
+        },4000)
+      }
 
+      $scope.continue = function(){
 
-                           })
+        $('.bg').addClass('colorize');
 
-                           tweenMax.to('#metal',2,{
-                               opacity:1,
-                               top : 0, ease: Elastic.easeInOut,
-                               onComplete : function(){
+        tweenMax.to($('.sentence-wrp'),1,
+        {y: '-=100px'})
 
-                                   tweenMax.to('.sentence-wrp',2,{
-                                        rotationY :'-=200', delay:.5, opacity:0, ease:Expo.easeInOut }
-                                   )
+        $timeout(function(){
+          $state.go('step-4.a');
+        },1000)
 
-                                   $timeout(function(){
-                                       $state.go('step-5.a');
-                                   },2500)
 
+      }
 
-                               }
-                           })
 
-                       }
 
+    })
 
+    break;
 
-                   })
+    /* step-4
+    ___________________________________________________________________________ */
 
-                   $timeout(function(){
-                       tweenMax.fromTo($('.ico'),1,
-                           {
-                               opacity: 0,
-                               y: 100
-                           },
-                           {
-                               opacity: 1,
-                               y:0,
-                               rotationZ: 0,
-                               ease: Elastic.easeOut,
-                               onComplete : function(){}
-                           }
-                       )
-                   },3000)
+    case 'step-4.a' :
 
+    Loader.show();
 
+    $scope.icon = 'favorite_outline';
+    $scope.text =
+    ["I'm looking for <br/>interesting company^1000,<strong>like you^1000</strong>",
+    "to working and </br>make <strong>kick-ass projects</strong>"];
 
-               })
+    if(Modernizr.speechsynthesis) {
+      var Voice = new SpeechSynthesisUtterance();
+      Voice.lang = 'en-EN';
+      Voice.text = "I'm looking for interesting company, like you";
+      speechSynthesis.speak(Voice);
+      setTimeout(function () {
+        var Voice = new SpeechSynthesisUtterance();
+        Voice.lang = 'en-EN';
+        Voice.text = "to working and make kick-ass projects!";
+        speechSynthesis.speak(Voice);
+      }, 5500);
+    }
 
-               break;
+    $scope.$on('$viewContentLoaded',function(){
 
+      Loader.hide();
 
-           /* step-3.a
-            ___________________________________________________________________________ */
+      $scope.$broadcast('typing');
 
-           case 'step-5.a' :
+      $scope.$on('preStringTyped',function(e,value){
 
-               Loader.show();
+        if(value == 1) {
 
-               $scope.icon = 'insert_emoticon';
+          tweenMax.to('.ico',2,{
+            scale : 4,
+            opacity: 0,
+            ease: Expo.easeOut,
+            delay:1,
+            width:0,
+            margin:'0 auto 0'
 
-               $scope.text =
-                   ["Hope to see you soon.^1000",
-                   "Keep in touch and <br/> <strong>drop me an email!</strong>"]
 
-               $scope.$on('$viewContentLoaded',function(){
+          })
 
-                   Loader.hide();
+          tweenMax.to('#metal',2,{
+            opacity:1,
+            top : 0, ease: Elastic.easeInOut,
+            onComplete : function(){
 
+              tweenMax.to('.sentence-wrp',2,{
+                rotationY :'-=200', delay:.5, opacity:0, ease:Expo.easeInOut }
+              )
 
-                   $scope.$broadcast('typing');
+              $timeout(function(){
+                if(Modernizr.speechsynthesis) {
+                  var Voice = new SpeechSynthesisUtterance();
+                  Voice.lang = 'en-EN';
+                  Voice.text = "Hope to see you soon!";
+                  speechSynthesis.speak(Voice);
+                  setTimeout(function () {
+                    var Voice = new SpeechSynthesisUtterance();
+                    Voice.lang = 'en-EN';
+                    Voice.text = "Keep in touch and drop me an email!";
+                    speechSynthesis.speak(Voice);
+                  }, 3000);
+                }
+                $state.go('step-5.a');
+              },2500)
 
-                   $scope.$on('preStringTyped',function(e,value){
 
-                       if(value == 1){
+            }
+          })
 
-                           $scope.$apply(function(){
-                               $scope.icon = 'email';
-                              $timeout(function(){
-                                  $('.ico').addClass('pulse');
-                                  $('.restart').fadeIn();
-                              },1000)
-                           })
+        }
 
-                       }
-                   })
 
-               })
 
-               $scope.trigger = function(){
-                   $rootScope.$broadcast('openMenu');
-               };
+      })
 
+      $timeout(function(){
+        tweenMax.fromTo($('.ico'),1,
+        {
+          opacity: 0,
+          y: 100
+        },
+        {
+          opacity: 1,
+          y:0,
+          rotationZ: 0,
+          ease: Elastic.easeOut,
+          onComplete : function(){}
+        }
+      )
+    },3000)
+        
+  })
 
-               break;
+  break;
 
 
-           /* default
-            ___________________________________________________________________________ */
+  /* step-3.a
+  ___________________________________________________________________________ */
 
-           default :
-               console.log('default break')
-               break;
+  case 'step-5.a' :
 
-       }
+  Loader.show();
 
+  $scope.icon = 'insert_emoticon';
 
-       $scope.restart = function(){
+  $scope.text =
+  ["Hope to see you soon.^1000",
+  "Keep in touch and <br/> <strong>drop me an email!</strong>"]
 
-           $state.go('step-1',{name: $scope.visitor});
+  $scope.$on('$viewContentLoaded',function(){
 
-       }
+    Loader.hide();
 
 
+    $scope.$broadcast('typing');
 
+    $scope.$on('preStringTyped',function(e,value){
 
+      if(value == 1){
 
+        $scope.$apply(function(){
+          $scope.icon = 'email';
+          $timeout(function(){
+            $('.ico').addClass('pulse');
+            $('.restart').fadeIn();
+          },1000)
+        })
 
+      }
+    })
 
-   }
+  })
 
-    return SentenceController;
+  $scope.trigger = function(){
+    $rootScope.$broadcast('openMenu');
+  };
+
+
+  break;
+
+
+  /* default
+  ___________________________________________________________________________ */
+
+  default :
+  console.log('default break')
+  break;
+
+}
+
+
+$scope.restart = function(){
+
+  $state.go('step-1',{name: $scope.visitor});
+
+}
+
+
+
+
+
+
+
+}
+
+return SentenceController;
 
 
 
