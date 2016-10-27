@@ -1,10 +1,9 @@
-define(["jquery",'three'], function($, THREE) {
-
-
+define(["jquery"], function($) {
 
     var WRF = {
 
         start : function(id){
+
 
             var mouseX = 0, mouseY = 0,
 
@@ -207,4 +206,3 @@ define(["jquery",'three'], function($, THREE) {
 
 
 });
-

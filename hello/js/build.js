@@ -15,7 +15,7 @@
         angular_router : '../lib/angular-ui-router/release/angular-ui-router.min',
         ngMdIcons : '../lib/angular-material-icons/angular-material-icons',
         morph : '../lib/svg-morpheus',
-        three : '../lib/threejs/build/three.min',
+        //three : '../lib/threejs/build/three.min',
         tweenMax : '../lib/gsap/src/minified/TweenMax.min',
         typejs : '../lib/typed.js/dist/typed.min',
         annyang : '../lib/annyang.min',
