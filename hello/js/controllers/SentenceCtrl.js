@@ -74,12 +74,12 @@ define(['jquery','tweenMax','wireframe'],function($,tweenMax, WRF){
       Loader.show();
 
       $scope.icon = 'thumb_up';
-      $scope.text = ["Great!^500 <br/> I'm happy you're good.", "Can i introduce my self?"];
+      $scope.text = ["Great!^500 <br/> I'm happy you're good.", "Can i introduce myself?"];
 
       if(Modernizr.speechsynthesis) {
         var Voice = new SpeechSynthesisUtterance();
         Voice.lang = 'en-EN';
-        Voice.text = "!Great! I'm happy you're good. Can i introduce my self?";
+        Voice.text = "!Great! I'm happy you're good. Can i introduce myself?";
         speechSynthesis.speak(Voice);
       }
 
@@ -112,7 +112,7 @@ define(['jquery','tweenMax','wireframe'],function($,tweenMax, WRF){
       $scope.icon = 'bad';
       $scope.text =
       ["Oh!^500 Really sorry <br/>is not a great day.^600",
-      "Can i introduce my self?^500 <br/> <strong>Anyway?</strong>"];
+      "Can i introduce myself?^500 <br/> <strong>Anyway?</strong>"];
 
       if(Modernizr.speechsynthesis) {
         var Voice = new SpeechSynthesisUtterance();
@@ -123,7 +123,7 @@ define(['jquery','tweenMax','wireframe'],function($,tweenMax, WRF){
         setTimeout(function () {
           var Voice = new SpeechSynthesisUtterance();
           Voice.lang = 'en-EN';
-          Voice.text = "Can i introduce my self anyway?";
+          Voice.text = "Can i introduce myself anyway?";
           speechSynthesis.speak(Voice);
         }, 4000);
       }
