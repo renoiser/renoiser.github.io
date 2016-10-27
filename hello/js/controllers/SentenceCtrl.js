@@ -25,8 +25,6 @@ define(['jquery','tweenMax','wireframe'],function($,tweenMax, WRF){
 
       case 'step-1' :
 
-      console.log('init app -> ', $stateParams.name);
-
       $('.restart').hide();
 
       if($stateParams.name === '') {
@@ -412,7 +410,7 @@ define(['jquery','tweenMax','wireframe'],function($,tweenMax, WRF){
         }
       )
     },3000)
-        
+
   })
 
   break;

@@ -4,7 +4,8 @@
   "description": "rl says hello!",
   "main": "js/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node r.js -o js/build.js && gulp"
   },
   "keywords": [
     "rl",
