@@ -159,8 +159,8 @@ define(['jquery','tweenMax','wireframe'],function($,tweenMax, WRF){
 
       $scope.text2 =
       ["I love coding ^800",
-      "i'm passionate about <br/> <strong>digital, web and interactive</strong> ^500",
-      "i love research^500<br/>and experiment with <br/><strong>latest technologies^500</strong>"];
+      "i'm passionate about <br/> <strong>digital, web and interaction</strong> ^500",
+      "i love research and^500<br/> experiment with the <br/><strong>latest technologies^500</strong>"];
 
       if(Modernizr.speechsynthesis) {
         var Voice = new SpeechSynthesisUtterance();
@@ -183,13 +183,13 @@ define(['jquery','tweenMax','wireframe'],function($,tweenMax, WRF){
             setTimeout(function () {
               var Voice = new SpeechSynthesisUtterance();
               Voice.lang = 'en-EN';
-              Voice.text = "i'm passionate about digital, web and interactive";
+              Voice.text = "i'm passionate about digital, web and interaction";
               speechSynthesis.speak(Voice);
 
               setTimeout(function () {
                 var Voice = new SpeechSynthesisUtterance();
                 Voice.lang = 'en-EN';
-                Voice.text = "i love research and experiment with latest technologies";
+                Voice.text = "i love research and experiment with the latest technologies";
                 speechSynthesis.speak(Voice);
               }, 5200);
 
@@ -323,8 +323,8 @@ define(['jquery','tweenMax','wireframe'],function($,tweenMax, WRF){
 
     $scope.icon = 'favorite_outline';
     $scope.text =
-    ["I'm looking for <br/>interesting company^1000,<strong>like you^1000</strong>",
-    "to working and </br>make <strong>kick-ass projects</strong>"];
+    ["I'm looking for <br/>interesting company^1000, <strong>like you^1000</strong>",
+    "to work and </br>make <strong>kick-ass projects</strong>"];
 
     if(Modernizr.speechsynthesis) {
       var Voice = new SpeechSynthesisUtterance();
@@ -334,7 +334,7 @@ define(['jquery','tweenMax','wireframe'],function($,tweenMax, WRF){
       setTimeout(function () {
         var Voice = new SpeechSynthesisUtterance();
         Voice.lang = 'en-EN';
-        Voice.text = "to working and make kick-ass projects!";
+        Voice.text = "to work and make kick-ass projects!";
         speechSynthesis.speak(Voice);
       }, 5500);
     }
