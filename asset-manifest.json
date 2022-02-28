@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/renoiser/renoiser.github.io/static/css/main.fede0f40.css",
+    "main.js": "/renoiser/renoiser.github.io/static/js/main.fc4d5c15.js",
+    "static/js/787.e57c29aa.chunk.js": "/renoiser/renoiser.github.io/static/js/787.e57c29aa.chunk.js",
+    "index.html": "/renoiser/renoiser.github.io/index.html",
+    "main.fede0f40.css.map": "/renoiser/renoiser.github.io/static/css/main.fede0f40.css.map",
+    "main.fc4d5c15.js.map": "/renoiser/renoiser.github.io/static/js/main.fc4d5c15.js.map",
+    "787.e57c29aa.chunk.js.map": "/renoiser/renoiser.github.io/static/js/787.e57c29aa.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fede0f40.css",
+    "static/js/main.fc4d5c15.js"
+  ]
+}
