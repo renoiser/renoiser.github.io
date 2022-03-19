@@ -76,6 +76,9 @@
   cursor: pointer;
 }
 
+.bg-text {
+}
+
 .mouse {
   position: absolute;
   z-index: 3;

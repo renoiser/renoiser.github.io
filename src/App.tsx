@@ -98,13 +98,13 @@ function App() {
         </div>
       </div>
 
-      <animated.div style={panel} className="panel"></animated.div>
+      {/* <animated.div style={panel} className="panel"></animated.div>
       <animated.div
         style={{ transform: styles.xy.to(trans) }}
         className="mouse"
       >
         {mouse.x}:x {mouse.y}:y
-      </animated.div>
+      </animated.div> */}
     </div>
   );
 }
